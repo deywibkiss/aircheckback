@@ -1,0 +1,257 @@
+<div class="page-material-intro" ng-cloak>
+    <div class="pulzo-material-header-wrapper">
+        <h1>Página de materiales - UI</h1>
+        <p class="version">Versión 0.0.1</p>
+    </div>
+    
+    <h4>Introducción:</h4>
+
+    <p>
+        Esta página de materiales es una guía para desarrollo front-end de los contenidos gráficos de Pulzo.com destinado a diseñadores y desarrolladores de la compañía.
+    </p>
+
+    <p>
+        Cada elemento dentro de cada sección puede ser importado al código que se esté resolviendo.
+    </p>
+
+    <span class="separate"></span>
+
+    <h4>Para comenzar:</h4>
+
+    <p>
+        Antes de desarrollar, es importante verificar que la hoja de estilos sea incluida dentro del proyecto.
+    </p>
+
+    <div class="code" hljs>
+<link rel="stylesheet" href="pulzo.css">
+    </div>
+
+    <span class="separate"></span>
+
+    <h4>Estructura LESS</h4>
+
+    <p>
+        Esta es la estructura de archivos LESS, dispuestos para ser compilados usando grunt o gulp.
+    </p>
+
+    <div class="code" hljs>
+        pulzo/
+        ├── resources/
+        │   └── less/
+        │       ├── layout/
+        │       │    ├── fonts/
+        │       │    │    └── pulzo.less
+        │       │    │
+        │       │    ├── container.less
+        │       │    ├── header.less
+        │       │    └── menu.less
+        │       ├── mixins
+        │       │    ├── 3L.less
+        │       │    ├── responsive.less
+        │       │    └── text.less
+        │       ├── pages/
+        │       ├── vendor/
+        │       ├── widgets/
+        │       ├── base.less
+        │       ├── layout.less
+        │       ├── mixins.less
+        │       ├── pages.less
+        │       ├── pulzo.less
+        │       ├── variables.less
+        │       ├── vendor.less
+        │       └── widgets.less
+        └── web/
+            └── public/
+                ├── css/
+                ├── fonts/
+                └── images/
+    </div>
+
+    <ul>
+        <li>
+            <p>El directorio <strong>layout/</strong> contiene los estilos globales de la página, como el header, footer, menu, contenedor principal, etc.</p>
+            <p>Importe los nuevos archivos al fichero <strong>layout.less</strong></p>
+        </li>
+
+        <li>
+            <p>El directorio <strong>layout/fonts</strong> contiene todas las fuentes locales que el sitio usa en el renderizado. También se encuentra el archivo de la <strong>fuente iconográfica</strong> de Pulzo.</p>
+            <p>Añada aquí las <strong>nuevas familias de tipografías.</strong></p>
+            <p>Importe los nuevos archivos al fichero <strong>layout.less</strong></p>
+        </li>
+
+        <li>
+            <p>
+                El directorio <strong>mixins/</strong> contiene las funciones reutilizables tales como los estilos que necesitan prefijos de navegador, los breakpoints del responsive, etc. 
+            </p>
+            <p>Añada en este directorio <strong>funciones</strong> que vaya a utilizar reiteradamente para evitar código duplicado.</p>
+            <p>Importe los nuevos archivos al fichero <strong>mixins.less</strong></p>
+        </li>
+
+        <li>
+            <p>El directorio <strong>pages/</strong> contiene los estilos para cada una de las páginas del portal. Por ejemplo: article, grid, home, collaborations, etc.</p>
+            <p>Añada un archivo LESS para dar estilos a una página en concreto cuando los estilos sean muy específicos y no puedan ser incluidos en ningún otro directorio como <strong>layout/</strong> o <strong>widgets/</strong></p>
+            <p>Importe los nuevos archivos al fichero <strong>pages.less</strong></p>
+        </li>
+
+        <li>
+            <p>El directorio <strong>vendor/</strong> contiene todos los estilos de librerías externas, plugins de Javascript o estilos que no hacen parte del framework.</p>
+            <p>Añada un archivo a este directorio por cada hoja de estilos externa que desee incluir en el proyecto.</p>
+            <p class="highlight"><strong>¡Importante!</strong> debe cambiar la extension de los archivos de .css a .less</p>
+            <p>Importe los nuevos archivos al fichero <strong>vendor.less</strong></p>
+
+        </li>
+
+
+        <li>
+            <p>El directorio <strong>widgets/</strong> contiene todos los estilos para los widgets tales como autocorrector ortográfico, comentarios, recomendados, cifras destacadas, etc.</p>
+
+            <p>Añada nuevos estilos a este directorio <strong>por cada widget nuevo.</strong></p>
+
+            <p>Importe los archivos al fichero <strong>widgets.less</strong></p>
+        </li>
+    </ul>
+
+    <span class="separate"></span>
+
+    <h4>Compilar con gulp</h4>
+    
+    <p>Para compilar con gulp, siga las siguientes instrucciones:</p>
+
+    <ul>
+        <li>
+            <p>Crear en la raíz del proyecto un archivo con el nombre <strong>package.json</strong> con lo siguiente:</p>
+
+            <p hljs hljs-language="json">
+{
+    "private": true,
+    "devDependencies": {
+        "gulp": "^3.9.*",
+        "gulp-concat": "^2.6.*",
+        "gulp-less": "^3.0.*",
+        "gulp-livereload": "^3.8.1",
+        "gulp-rename": "^1.2.*",
+        "gulp-sourcemaps": "^1.6.*",
+        "gulp-uglify": "^1.5.*",
+        "gulp-watch": "^4.3.*",
+        "less-plugin-autoprefix": "^1.5.*",
+        "less-plugin-clean-css": "^1.5.*",
+        "gulp-util": "^3.0.*",
+        "gulp-plumber": "^1.1.*"
+    }
+}
+            </p>
+        </li>
+
+        <li>
+            <p>Instalar nodejs y luego ejecute el siguiente comando en la raíz del proyecto Pulzo y espere a que la instalación sea completada:</p>
+            <p hljs>sudo npm install</p>
+        </li>
+
+        <li>
+            <p>Cree un archivo <strong>gulpfile.js</strong> en la raíz del proyecto con el siguiente contenido:</p>
+            <p hljs hljs-language="javascript">
+    'use-strict';
+
+
+    var gulp = require('gulp'),
+        watch = require('gulp-watch'),
+        gp_concat = require('gulp-concat'),
+        gp_rename = require('gulp-rename'),
+        gp_uglify = require('gulp-uglify');
+        sourcemaps = require('gulp-sourcemaps'),
+        path = require('path'),
+        less = require('gulp-less'),
+        gutil = require('gulp-util'),
+        plumber = require('gulp-plumber'),
+        livereload = require('gulp-livereload');
+
+    // Using a less plugin to minify css 
+    var LessPluginCleanCSS = require('less-plugin-clean-css'),
+        cleancss = new LessPluginCleanCSS({ advanced: true });
+
+    // Using Autoprefixer
+    var LessPluginAutoPrefix = require('less-plugin-autoprefix'),
+        autoprefix= new LessPluginAutoPrefix();
+
+    var pStylesOrigin = './resources/assets/less/';
+    var pStylesDestination = './web/public/css/';
+
+    // Compile custom LESS
+    gulp.task('pulzo_less', function() {
+       return gulp.src('./resources/assets/less/pulzo.less')
+            .pipe(plumber())
+            .on('error', function (err) {
+                gutil.log(err);
+                this.emit('end');
+            })
+            .pipe(sourcemaps.init())
+            .pipe(less({
+              paths: [ path.join(__dirname, 'less', 'includes') ],
+              plugins: [cleancss, autoprefix]
+            }))
+            .pipe(sourcemaps.write())
+            .pipe(gulp.dest(pStylesDestination)).on('error', gutil.log)
+            .pipe(livereload());
+    });
+
+    gulp.task('watch', function() {
+        livereload.listen();
+        gulp.watch([pStylesOrigin + '/**/*.less'], ['pulzo_less']);
+    });
+
+    gulp.task('default', ['pulzo_less'], function(){});
+
+            </p>
+
+            <p class="highlight">
+                <strong>¡Importante!</strong>
+                Modifique las variables PATH (pStylesOrigin, pStylesDestination) dependiendo de la estructura del proyecto.
+            </p>
+        </li>
+
+        <li>
+            <p>Ejecute el siguiente comando en la raíz del proyecto:</p>
+            <p hljs>
+gulp
+            </p>
+
+            <p class="highlight">
+                <strong>¡Importante!</strong> Detenga el proceso gulp y vuelva a ejecutarlo cada vez que incluya un archivo .less nuevo:
+
+                <span hljs>
+ctrl + c // detener el proceso
+gulp // compilar less
+                </span>
+            </p>
+        </li>
+    </ul>
+
+    <span class="separate"></span>
+
+    <h4>Uso de watch y Livereload</h4>
+
+    <p>Para usar la compilación <em>"on the fly"</em>, siga las siguientes instrucciones:</p>
+    
+    <ul>
+        <li>
+            <p>Instale la extensión de Livereload (Chrome, Firefox):</p>
+            
+            <p><a href="https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei">Livereload para chrome</a></p>
+
+            <p><a href="https://addons.mozilla.org/es/firefox/addon/livereload/">Livereload para Firefox</a></p>
+
+            <p><a href="http://download.livereload.com/2.1.0/LiveReload-2.1.0.safariextz">Livereload para Safari</a></p>
+        </li>
+
+        <li>
+            <p>En la raíz del proyecto ejecute el siguiente comando:</p>
+            <p hljs>
+gulp watch
+            </p>
+        </li>
+
+        <li>
+            <p>Los cambios que haga sobre los archivos .less, se verán reflejados en el navegador <strong>sin necesidad de recargar la página.</strong></p>
+        </li>
+    </ul>
+</div>

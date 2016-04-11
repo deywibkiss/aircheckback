@@ -1,0 +1,54 @@
+{
+  "name": "Pulzo_Material",
+  "version": "1.0.0",
+  "description": "Material page for pulzo frontend framework",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pulzo/material.git"
+  },
+  "keywords": [
+    "MEAN",
+    "MVC"
+  ],
+  "author": "Brayan Serrano <brayan.serrano@pulzo.com> Nicolás Murte <nicolas.murte@pulzo.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pulzo/material/issues"
+  },
+  "homepage": "https://github.com/pulzo/issues",
+  "dependencies": {
+    "body-parser": "^1.10.1",
+    "connect": "^3.4.1",
+    "connect-flash": "^0.1.1",
+    "connect-multiparty": "^2.0.0",
+    "ejs": "^2.4.1",
+    "express": "latest",
+    "express-session": "^1.10.1",
+    "fs": "0.0.2",
+    "gulp": "latest",
+    "gulp-concat": "^2.6.0",
+    "gulp-filter": "^4.0.0",
+    "gulp-less": "^3.0.5",
+    "gulp-livereload": "^3.8.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.3",
+    "gulp-util": "^3.0.7",
+    "gulp-watch": "^4.3.5",
+    "less-plugin-autoprefix": "^1.5.*",
+    "less-plugin-clean-css": "^1.5.*",
+    "mongoose": "^3.8.28",
+    "multiparty": "^4.1.2",
+    "passport": "^0.2.1",
+    "passport-facebook": "^1.0.3",
+    "passport-local": "^1.0.0",
+    "passport-twitter": "^1.0.2",
+    "path": "^0.12.7",
+    "sys": "0.0.1"
+  }
+}

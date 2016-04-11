@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org">
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta name="description" content="">
+
+	    <title>Pulzo Material - <%- title %> </title>
+
+	    <link href="css/bootstrap.css" rel="stylesheet">
+	    <link href="css/pulzo-material.css" rel="stylesheet">
+	    <link href="css/pulzo-framework.css" rel="stylesheet">
+
+	    <!-- Fonts -->
+	    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	    <link href='https://fonts.googleapis.com/css?family=Noto+Serif:400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	    <link href='https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,900italic,900,700italic,700' rel='stylesheet' type='text/css'>
+
+	    <style>
+	        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	            display: none !important;
+	        }
+	    </style>
+
+	    <!-- Scripts -->
+	    <script type="text/javascript" src="/js/pulzo-libs.js"></script>
+	</head>
+	<body ng-app="materialApp">
+		<!-- container -->
+		<div class="container-fluid">
+			<div class="row">
+				<!-- Sidebar -->
+				<div class="col-md-4 col-lg-2 affix" id="pulzo-material-sidebar">
+					<div class="logo">
+						<img src="/img/logo.png" alt=""/>
+					</div>
+					<ul class="no-list">
+						<li><a href="#/">Introducción</a></li>
+						<li class="separate"></li>
+						<li><a href="#/material/items/practices">Best Practices</a></li>
+						<li><a href="#/material/items/grid">Sistema de grillas</a></li>
+						<li><a href="#/material/items/colors">Paleta de colores</a></li>
+						<li><a href="#/material/items/typo">Tipografías</a></li>
+						<li><a href="#/material/items/icons">Íconos</a></li>
+						<li><a href="#/material/items/boxes">Estilos de cajas</a></li>
+						<li><a href="#/material/items/buttons">Botones</a></li>
+						<li><a href="#/material/items/openings">Aperturas</a></li>
+						<li><a href="#/material/items/forms">Formularios</a></li>
+						<li><a href="#/material/items/widgets">Widgets</a></li>
+						<li class="separate"></li>
+						<li><a href="#/material/insert">Crear Material</a></li>
+						<li><a href="#/material/update-file">Actualizar archivo</a></li>
+					</ul>
+					<div class="clear"></div>
+				</div>
+
+				<div class=" col-md-8 col-lg-10">
+					<div ng-view class="main-content"></div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			var categories = <%- JSON.stringify(categories) %>;
+			var lessPaths = <%- JSON.stringify(lessPaths) %>;
+			var version = '<%= version %>';
+		</script>
+		<script type="text/javascript" src="/js/pulzo-material-app.js"></script>
+	</body>
+</html>

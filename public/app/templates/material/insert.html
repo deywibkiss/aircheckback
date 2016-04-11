@@ -1,0 +1,43 @@
+<div class="pulzo-material-header-wrapper" ng-cloak>
+	<h1>Insertar nuevo material</h1>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Insertar material</h3>
+	</div>
+
+	<div class="panel-body page-material-insert">
+		<form name="createForm">
+			<div class="form-group col-sm-12">
+				<label for="name">Nombre del material</label>
+				<input type="text" ng-model="material.name" class="form-control" name="materialName" id="name" required/>
+			</div>
+
+			<div class="form-group col-sm-12">
+				<label for="category">Categoría</label>
+				<select chosen data-placeholder="Selecciona una categoría" option="categories" ng-model="material.category"
+				ng-options="category.key as category.name
+				for category in categories" required>
+				</select>
+			</div>
+			
+			<div class="form-group col-sm-12">
+				<label for="description">How to:</label>
+				<text-angular id="description" ng-model="material.description" name="materialDescription" ta-toolbar="[['h1','h2','h3', 'p'],['bold','italics', 'underline'],['ul','ol', 'justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],['insertLink', 'charcount']]" required=""></text-angular>
+			</div>
+
+			<div class="form-group col-sm-6">
+				<label for="code">HTML</label>
+				<textarea class="form-control" id="code" ng-model="material.code" rows="10" required></textarea>
+			</div>
+
+			<div class="form-group col-sm-6">
+				<label for="code">Preview</label>
+				<div hljs hljs-source="material.code"></div>
+			</div>
+
+			<button type="submit" ng-click="create()" class="btn btn-default">Guardar</button>
+		</form>
+	</div>
+</div>

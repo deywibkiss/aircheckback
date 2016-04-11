@@ -1,0 +1,21 @@
+<div class="page-material-list" ng-cloak>
+
+	<div class="pulzo-material-header-wrapper {{ collection.color }}">
+		<h1>{{ collection.name }}</h1>
+		<p class="version">Versión {{ version }}</p>
+	</div>
+	
+	<div class="ui-element" ng-repeat="item in items">
+		<h2 class="item-name"><a href="#/material/edit/{{ item._id }}">{{ item.name }}</a></h2>
+
+		<div class="item-description" ng-bind-html="item.description"></div>
+
+		<div class="item-html" ng-bind-html="item.code | to_trusted"></div>
+
+		<!-- Will get the same result as above -->
+		<div ng-if="item.code" class="item-code" id="code-{{item._id}}" hljs hljs-source="item.code"></div>
+		<button class="btn btn-default" ng-if="item.code" ngclipboard data-clipboard-target="#code-{{item._id}}">
+		    Copiar código
+		</button>
+	</div>
+</div>

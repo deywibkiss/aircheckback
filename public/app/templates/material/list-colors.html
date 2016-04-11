@@ -1,0 +1,17 @@
+<div class="page-material-list" ng-cloak>
+	<div class="pulzo-material-header-wrapper {{ collection.color }}">
+		<h1>{{ collection.name }}</h1>
+		<p class="version">Versión {{ version }}</p>
+	</div>
+	
+	<ul class="no-list color-list">
+		<li ng-repeat="item in items">
+			<a href="#/material/edit/{{ item._id }}" class="color-box bg-{{ item.name }}">
+				<div class="color-meta">
+					<span class="color-code">{{item.description | htmlToPlaintext }}</span>
+					<span class="color-var-name" ng-bind-html="item.code | to_trusted"></span>
+				</div>
+			</a>
+		</li>
+	</ul>
+</div>
