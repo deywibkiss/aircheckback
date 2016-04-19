@@ -2,5 +2,5 @@ var port = 1337;
 
 module.exports = {
 	port: port,
-	db: 'mongodb://localhost/material'
+	db: 'mongodb://localhost/aircheck'
 };
