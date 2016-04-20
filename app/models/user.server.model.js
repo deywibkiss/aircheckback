@@ -6,7 +6,7 @@ var UserSchema = new Schema({
 	name: String,
 	age: Number,
 	email: String,
-	symptons: [],
+	symptoms: [],
 	location: {}
 });
 
