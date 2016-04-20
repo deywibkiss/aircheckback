@@ -1,5 +1,5 @@
-var user = require('../../app/controllers/user.server.controller');
+var report = require('../../app/controllers/report.server.controller');
 
 module.exports = function(app) {
-	app.route('/user').post(user.create).get(user.list);
+	app.route('/report').post(report.create).get(report.list);
 };

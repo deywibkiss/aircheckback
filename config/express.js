@@ -23,8 +23,9 @@ module.exports = function() {
 
 	app.use(flash());
 
-	require('../app/routes/index.server.routes.js')(app);
 	require('../app/routes/user.server.routes.js')(app);
+	require('../app/routes/index.server.routes.js')(app);
+	require('../app/routes/report.server.routes.js')(app);
 
 	app.use(express.static('./public'));
 

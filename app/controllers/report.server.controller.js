@@ -1,4 +1,6 @@
 var User = require('mongoose').model('User');
+var Report = require('mongoose').model('Report');
+var Location = require('mongoose').model('Location');
 
 var getErrorMessage = function(err) {
 	var message = '';
@@ -6,7 +8,7 @@ var getErrorMessage = function(err) {
 		switch (err.code) {
 			case 11000:
 			case 11001:
-				message = 'Username already exists';
+				message = 'Report already exists';
 				break;
 			default:
 				message = 'Something went wrong';
@@ -24,61 +26,50 @@ var getErrorMessage = function(err) {
 
 
 exports.create = function(req, res, next) {
-	var user = new User(req.body);
-	user.save(function(err) {
+
+	User.findOne({ _id: req.body.userID }, function(err, user) {
+
 		if (err) {
-			return next(err);
-		} else {
-			res.json(user);
+			console.log(err);
+			res.status(500).json({error: 'Not found User'}); return;
 		}
+
+		var location = new Location();
+
+		location.latitude = req.body.latitude;
+		location.longitude = req.body.longitude;
+
+		location.save(function (err) {
+			if (err) {
+				console.log(err);
+				res.status(500).json({error: 'Not saved location'}); return;
+			}
+
+			var report = new Report();
+
+			report.user = user;
+			report.type = req.body.type;
+			report.location = location;
+
+			report.save(function (err) {
+				if (err) {
+					console.log(err);
+					res.status(500).json({error: 'Not saved report'}); return;
+				}
+
+				res.json({success: 'The report was saved successfully'}); return;
+			});
+		});
 	});
+
 };
 
 exports.list = function(req, res, next) {
-	User.find({}, function(err, users) {
+	Report.find({}, function(err, users) {
 		if (err) {
 			return next(err);
 		} else {
 			res.json(users);
 		}
 	});
-};
-
-exports.read = function(req, res) {
-	res.json(req.user);
-};
-
-exports.userByID = function(req, res, next, id) {
-	User.findOne({
-			_id: id
-		},
-		function(err, user) {
-			if (err) {
-				return next(err);
-			} else {
-				req.user = user;
-				next();
-			}
-		}
-	);
-};
-
-exports.update = function(req, res, next) {
-	User.findByIdAndUpdate(req.user.id, req.body, function(err, user) {
-		if (err) {
-			return next(err);
-		} else {
-			res.json(user);
-		}
-	});
-};
-
-exports.delete = function(req, res, next) {
-	req.user.remove(function(err) {
-		if (err) {
-			return next(err);
-		} else {
-			res.json(req.user);
-		}
-	})
 };

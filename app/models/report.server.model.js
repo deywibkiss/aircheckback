@@ -2,12 +2,16 @@ var mongoose = require('mongoose'),
 	crypto = require('crypto'),
 	Schema = mongoose.Schema;
 
-var UserSchema = new Schema({
-	name: String,
-	age: Number,
-	email: String,
-	symptons: [],
-	location: {}
+var LocationSchema = new Schema({
+	latitude	: Number,
+	longitude	: Number
 });
 
-mongoose.model('User', UserSchema);
+var ReportSchema = new Schema({
+	user     	: { type: Schema.Types.ObjectId, ref: 'User' },
+	type		: String,
+	location	: { type: Schema.Types.ObjectId, ref: 'Location' }
+}, { timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } });
+
+mongoose.model('Report', ReportSchema);
+mongoose.model('Location', LocationSchema);
