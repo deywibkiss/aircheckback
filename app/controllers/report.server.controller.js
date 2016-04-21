@@ -57,3 +57,18 @@ exports.list = function(req, res, next) {
 		}
 	});
 };
+
+exports.listType = function(req, res, next) {
+
+	var type = req.params.type;
+
+	Report.find({type: type}, function(err, users) {
+		if (err) {
+			return next(err);
+		} else {
+			res.json(users);
+		}
+	});
+
+
+};
