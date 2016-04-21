@@ -1,6 +1,5 @@
 var User = require('mongoose').model('User');
 var Report = require('mongoose').model('Report');
-var Location = require('mongoose').model('Location');
 
 var getErrorMessage = function(err) {
 	var message = '';
@@ -34,33 +33,17 @@ exports.create = function(req, res, next) {
 			res.status(500).json({error: 'Not found User'}); return;
 		}
 
-		var location = new Location();
+		var report = new Report(req.body);
 
-		location.latitude = req.body.latitude;
-		location.longitude = req.body.longitude;
-
-		location.save(function (err) {
+		report.save(function (err) {
 			if (err) {
 				console.log(err);
-				res.status(500).json({error: 'Not saved location'}); return;
+				res.status(500).json({error: 'Not saved report'}); return;
 			}
 
-			var report = new Report();
-
-			report.user = user;
-			report.type = req.body.type;
-			report.subtype = req.body.subtype;
-			report.location = location;
-
-			report.save(function (err) {
-				if (err) {
-					console.log(err);
-					res.status(500).json({error: 'Not saved report'}); return;
-				}
-
-				res.json({success: 'The report was saved successfully'}); return;
-			});
+			res.json({success: 'The report was saved successfully'}); return;
 		});
+
 	});
 
 };
