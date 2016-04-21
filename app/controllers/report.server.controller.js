@@ -49,6 +49,7 @@ exports.create = function(req, res, next) {
 
 			report.user = user;
 			report.type = req.body.type;
+			report.subtype = req.body.subtype;
 			report.location = location;
 
 			report.save(function (err) {

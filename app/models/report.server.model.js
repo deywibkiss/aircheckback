@@ -10,6 +10,7 @@ var LocationSchema = new Schema({
 var ReportSchema = new Schema({
 	user     	: { type: Schema.Types.ObjectId, ref: 'User' },
 	type		: String,
+	subtype		: String,
 	location	: { type: Schema.Types.ObjectId, ref: 'Location' }
 }, { timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } });
 
