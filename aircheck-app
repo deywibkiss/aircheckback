@@ -2,14 +2,14 @@
 
 USER="root"
 NODE_ENV="production"
-PORT="8082"
-APP_DIR="/home/ubuntu/apps/material"
+PORT="8080"
+APP_DIR="/home/airchecker/app/aircheckback"
 NODE_APP="server.js"
 CONFIG_DIR="$APP_DIR"
 PID_DIR="$APP_DIR/pid"
 PID_FILE="$PID_DIR/app.pid"
 LOG_DIR="/var/log/apache2"
-LOG_FILE="$LOG_DIR/material.log"
+LOG_FILE="$LOG_DIR/aircheckback.log"
 NODE_EXEC=$(which node)
 
 ###############
