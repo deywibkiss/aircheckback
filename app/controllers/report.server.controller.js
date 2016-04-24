@@ -60,6 +60,31 @@ exports.list = function(req, res, next) {
 	});
 };
 
+exports.stadistic = function(req, res, next) {
+	Report.find({}, function(err, report) {
+		if (err) return next(err);
+		else {
+
+			var subtypes = [];
+
+			for (i = 0; i < report.length; i++) {
+
+				var index = -1;
+				for (k = 0; k < subtypes.length; k++) 
+					if( subtypes[k]['subtype'] == report[i].subtype ) { index = k; break; }
+
+				if( index < 0 ) subtypes.push( { 'subtype': report[i].subtype, 'count': 1 } );
+				else{
+					subtypes[index]['count']++;
+				}
+				
+			}
+
+			res.json(subtypes);
+		}
+	});
+};
+
 exports.getReport = function(req, res, next) {
 	res.render('getReport');
 };

@@ -26,5 +26,6 @@ module.exports = function(app) {
 	app.route('/report').post(report.create(io)).get(report.list);
 	app.route('/report/:type').get(report.listType);
 	app.route('/getReport').get(report.getReport);
+    app.route('/stadistic').get(report.stadistic);
 
 };
