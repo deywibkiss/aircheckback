@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat</title>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+</head>
+
+<body>
+
+    <div id='click'>Crear Reporte</div>
+    <hr>
+    <div id='click2'>Crear Usuario</div>
+
+    <script>
+
+        $( "#click2" ).click(function() {
+            
+            var request = $.ajax({
+                url: "http://127.0.0.1:8080/user",
+                method: "POST",
+                data: { 
+                    name: 'Arturo',
+                    age: 24,
+                    email: 'arturo.verbel@hotmail.com'
+                },
+                dataType: "json"
+            });
+             
+            request.done(function( msg ) {
+                console.log('Respuestas');
+                console.log(msg);
+            });
+             
+            request.fail(function( jqXHR, textStatus ) {
+              alert( "Request failed: " + textStatus );
+            });
+
+        });
+
+        $( "#click" ).click(function() {
+            
+            var request = $.ajax({
+                url: "http://127.0.0.1:8080/report",
+                method: "POST",
+                data: { 
+                    user: '571c31c65ec9d71b307a14e1',
+                    type: 'pollution',
+                    subtype: 'String',
+                    location: { latitude: 098, longitude: 88}
+                },
+                dataType: "json"
+            });
+             
+            request.done(function( msg ) {
+                console.log('Respuestas');
+                console.log(msg);
+            });
+             
+            request.fail(function( jqXHR, textStatus ) {
+              alert( "Request failed: " + textStatus );
+            });
+
+        });
+
+        
+        socket = io();
+
+        socket.on('report get', function(data){
+            console.log(data);
+        });
+
+    </script>
+</body>
+</html>
+

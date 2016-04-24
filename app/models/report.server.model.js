@@ -6,6 +6,7 @@ var ReportSchema = new Schema({
 	user     	: { type: Schema.Types.ObjectId, ref: 'User' },
 	type		: String,
 	subtype		: String,
+	level		: Number,
 	location	: {}
 }, { timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } });
 

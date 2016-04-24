@@ -24,28 +24,30 @@ var getErrorMessage = function(err) {
 
 
 
-exports.create = function(req, res, next) {
+exports.create = function(socket) {
+	return function(req, res, next) {
 
-	User.findOne({ _id: req.body.userID }, function(err, user) {
+		User.findOne({ _id: req.body.userID }, function(err, user) {
 
-		if (err) {
-			console.log(err);
-			res.status(500).json({error: 'Not found User'}); return;
-		}
-
-		var report = new Report(req.body);
-
-		report.save(function (err) {
 			if (err) {
 				console.log(err);
-				res.status(500).json({error: 'Not saved report'}); return;
+				res.status(500).json({error: 'Not found User'}); return;
 			}
 
-			res.json({success: 'The report was saved successfully'}); return;
+			var report = new Report(req.body);
+
+			report.save(function (err) {
+				if (err) {
+					console.log(err);
+					res.status(500).json({error: 'Not saved report'}); return;
+				}
+
+				socket.emit('report get', { data: "Esta es la data" });
+				console.log("Emite..");
+				res.json({success: 'The report was saved successfully'}); return;
+			});
 		});
-
-	});
-
+	};
 };
 
 exports.list = function(req, res, next) {
@@ -56,6 +58,10 @@ exports.list = function(req, res, next) {
 			res.json(users);
 		}
 	});
+};
+
+exports.getReport = function(req, res, next) {
+	res.render('getReport');
 };
 
 exports.listType = function(req, res, next) {
