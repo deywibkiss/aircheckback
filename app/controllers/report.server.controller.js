@@ -42,7 +42,7 @@ exports.create = function(socket) {
 					res.status(500).json({error: 'Not saved report'}); return;
 				}
 
-				socket.emit('report get', { data: "Esta es la data" });
+				socket.emit('report get', report);
 				console.log("Emite..");
 				res.json({success: 'The report was saved successfully'}); return;
 			});
